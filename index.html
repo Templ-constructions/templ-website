@@ -1922,7 +1922,11 @@
         </div>
         <div class="cta-inner" style="margin-top: 48px;">
             <div class="cta-form reveal">
-                <form id="contactForm">
+                <form id="contactForm" action="https://api.web3forms.com/submit" method="POST">
+                    <input type="hidden" name="access_key" value="f7834f63-0126-46a4-946a-86b84812f635">
+                    <input type="hidden" name="subject" value="New Enquiry — Templ Constructions">
+                    <input type="hidden" name="from_name" value="Templ Constructions Website">
+                    <input type="checkbox" name="botcheck" style="display:none;">
                     <div class="form-row">
                         <div class="form-group">
                             <label for="firstName">First Name</label>
@@ -2211,31 +2215,61 @@
             });
         });
 
-        // ── Contact Form ────────────────────────────
+        // ── Contact Form (Web3Forms) ───────────────────────────
         document.getElementById('contactForm').addEventListener('submit', function(e) {
             e.preventDefault();
             var btn = document.getElementById('submitBtn');
             var btnText = btn.querySelector('.btn-text');
             var arrowSpan = btn.querySelector('.arrow');
+
             btnText.textContent = 'Sending...';
             arrowSpan.textContent = '';
             btn.style.opacity = '0.7';
+            btn.disabled = true;
 
-            setTimeout(function() {
-                btnText.textContent = 'Sent Successfully';
-                arrowSpan.textContent = '\u2713';
-                btn.style.background = '#4a7c59';
-                btn.style.color = 'white';
+            var formData = new FormData(this);
+
+            fetch('https://api.web3forms.com/submit', {
+                method: 'POST',
+                body: formData
+            })
+            .then(function(res) { return res.json(); })
+            .then(function(data) {
+                if (data.success) {
+                    btnText.textContent = 'Sent Successfully';
+                    arrowSpan.textContent = '\u2713';
+                    btn.style.background = '#4a7c59';
+                    btn.style.color = 'white';
+                    btn.style.opacity = '1';
+                    document.getElementById('contactForm').reset();
+                    setTimeout(function() {
+                        btnText.textContent = 'Send Enquiry';
+                        arrowSpan.textContent = '\u2192';
+                        btn.style.background = '';
+                        btn.style.color = '';
+                        btn.disabled = false;
+                    }, 4000);
+                } else {
+                    btnText.textContent = 'Something went wrong';
+                    arrowSpan.textContent = '';
+                    btn.style.opacity = '1';
+                    btn.disabled = false;
+                    setTimeout(function() {
+                        btnText.textContent = 'Send Enquiry';
+                        arrowSpan.textContent = '\u2192';
+                    }, 3000);
+                }
+            })
+            .catch(function() {
+                btnText.textContent = 'Failed — please try again';
+                arrowSpan.textContent = '';
                 btn.style.opacity = '1';
-
+                btn.disabled = false;
                 setTimeout(function() {
                     btnText.textContent = 'Send Enquiry';
                     arrowSpan.textContent = '\u2192';
-                    btn.style.background = '';
-                    btn.style.color = '';
-                    document.getElementById('contactForm').reset();
                 }, 3000);
-            }, 1500);
+            });
         });
 
         // ── Counter Animation ───────────────────────
