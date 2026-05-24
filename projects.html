@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects — Templ Constructions</title>
+    <meta name="description" content="Explore our portfolio of residential construction projects across Melbourne — Abbotsford, Rhyll, Richmond, Cheltenham and Albert Park.">
+    <link rel="canonical" href="https://templconstructions.com.au/projects">
+    <link rel="icon" type="image/jpeg" href="https://templconstructions.com.au/cdn/shop/files/Templ_Icon_Black.jpg?crop=center&height=32&v=1754597221&width=32">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Projects — Templ Constructions">
+    <meta property="og:description" content="Explore our portfolio of residential construction projects across Melbourne.">
+    <meta property="og:image" content="https://templconstructions.com.au/cdn/shop/files/albertpark.jpg?v=1741835865&width=1200">
+    <meta property="og:url" content="https://templconstructions.com.au/projects">
+    <meta property="og:site_name" content="Templ Constructions">
+    <meta name="twitter:card" content="summary_large_image">
+    <link href="https://api.fontshare.com/v2/css?f[]=clash-display@200,300,400,500,600,700&f[]=satoshi@300,400,500,700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --black: #0a0a0a; --charcoal: #1a1a1a; --graphite: #2a2a2a;
+            --stone: #c4b8a8; --cream: #f5f0ea; --warm-white: #faf8f5;
+            --gold: #c9a96e; --gold-light: #dcc08a; --lime: #c8e64a;
+            --text-muted: #8a8580;
+            --font-display: 'Clash Display', sans-serif;
+            --font-body: 'Satoshi', sans-serif;
+            --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { font-size: 16px; }
+        body { font-family: var(--font-body); background: var(--black); color: var(--cream); -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+        img { max-width: 100%; height: auto; display: block; }
+        a { text-decoration: none; color: inherit; }
+        button { border: none; background: none; cursor: pointer; font-family: inherit; color: inherit; }
+
+        .grain { position: fixed; inset: 0; pointer-events: none; z-index: 9998; opacity: 0.03;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+            background-repeat: repeat; background-size: 200px; }
+
+        /* ── CURSOR ─────────────────────────────── */
+        .cursor-dot { width: 8px; height: 8px; background: var(--gold); border-radius: 50%; position: fixed; pointer-events: none; z-index: 10001; mix-blend-mode: difference; }
+        .cursor-ring { width: 40px; height: 40px; border: 1.5px solid var(--gold); border-radius: 50%; position: fixed; pointer-events: none; z-index: 10001;
+            transition: width 0.3s var(--ease-out-expo), height 0.3s, border-color 0.3s; mix-blend-mode: difference; }
+        .cursor-ring.hover { width: 70px; height: 70px; border-color: var(--lime); }
+
+        /* ── NAV ────────────────────────────────── */
+        .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; padding: 24px 48px;
+            display: flex; align-items: center; justify-content: space-between;
+            background: rgba(10,10,10,0.6); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            transition: opacity 0.5s, transform 0.5s var(--ease-out-expo); }
+        .nav.hidden { opacity: 0; transform: translateY(-100%); pointer-events: none; }
+        .nav-logo { height: 28px; filter: invert(1); }
+        .nav-links { display: flex; gap: 40px; list-style: none; }
+        .nav-links a { font-family: var(--font-display); font-size: 12px; font-weight: 500; letter-spacing: 3px; text-transform: uppercase; color: white; position: relative; padding-bottom: 4px; }
+        .nav-links a::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 1px; background: var(--gold); transition: width 0.4s var(--ease-out-expo); }
+        .nav-links a:hover::after, .nav-links a.active::after { width: 100%; }
+        .nav-cta { font-family: var(--font-display); font-size: 11px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; color: var(--black); background: var(--gold); padding: 12px 28px; transition: background 0.3s; }
+        .nav-cta:hover { background: var(--gold-light); }
+        .nav-toggle { display: none; flex-direction: column; gap: 6px; padding: 14px 10px; }
+        .nav-toggle span { display: block; width: 28px; height: 1.5px; background: white; transition: transform 0.3s, opacity 0.3s; }
+        .nav-toggle.active span:nth-child(1) { transform: rotate(45deg) translate(5px,5px); }
+        .nav-toggle.active span:nth-child(2) { opacity: 0; }
+        .nav-toggle.active span:nth-child(3) { transform: rotate(-45deg) translate(5px,-5px); }
+        .mobile-menu { display: none; position: fixed; inset: 0; background: var(--black); z-index: 999; flex-direction: column; align-items: center; justify-content: center; gap: 32px; opacity: 0; visibility: hidden; transition: opacity 0.4s, visibility 0.4s; }
+        .mobile-menu.open { opacity: 1; visibility: visible; }
+        .mobile-menu a { font-family: var(--font-display); font-size: 28px; font-weight: 500; letter-spacing: 4px; text-transform: uppercase; color: var(--cream); transform: translateY(20px); opacity: 0; transition: transform 0.5s var(--ease-out-expo), opacity 0.5s, color 0.3s; }
+        .mobile-menu.open a { transform: translateY(0); opacity: 1; }
+        .mobile-menu a:hover { color: var(--gold); }
+        .mobile-menu.open a:nth-child(1){transition-delay:.1s}.mobile-menu.open a:nth-child(2){transition-delay:.15s}.mobile-menu.open a:nth-child(3){transition-delay:.2s}.mobile-menu.open a:nth-child(4){transition-delay:.25s}.mobile-menu.open a:nth-child(5){transition-delay:.3s}.mobile-menu.open a:nth-child(6){transition-delay:.35s}
+
+        /* ── HERO CARDS ─────────────────────────── */
+        .project-card {
+            position: relative; height: 100vh; min-height: 600px;
+            overflow: hidden; cursor: pointer;
+        }
+        .project-card-bg {
+            position: absolute; inset: 0; transition: transform 8s linear;
+        }
+        .project-card-bg img {
+            width: 100%; height: 100%; object-fit: cover;
+            transition: transform 1.2s var(--ease-out-expo), filter 1.2s;
+            filter: brightness(0.55) saturate(0.85);
+        }
+        .project-card:hover .project-card-bg img {
+            transform: scale(1.04);
+            filter: brightness(0.35) saturate(0.6);
+        }
+        .project-card-overlay {
+            position: absolute; inset: 0;
+            background: linear-gradient(to top, rgba(10,10,10,0.9) 0%, rgba(10,10,10,0.15) 40%, rgba(10,10,10,0.3) 100%);
+        }
+        .project-card-content {
+            position: absolute; bottom: 0; left: 0; right: 0; padding: 64px 48px;
+            z-index: 2;
+        }
+        .project-card-number {
+            font-family: var(--font-display); font-size: 13px; font-weight: 400;
+            letter-spacing: 4px; color: var(--gold); opacity: 0.6; margin-bottom: 16px;
+        }
+        .project-card-title {
+            font-family: var(--font-display); font-size: clamp(48px, 7vw, 100px);
+            font-weight: 600; line-height: 0.95; margin-bottom: 12px;
+            transition: transform 0.6s var(--ease-out-expo);
+        }
+        .project-card:hover .project-card-title { transform: translateX(16px); }
+        .project-card-type {
+            font-family: var(--font-display); font-size: 13px; font-weight: 500;
+            letter-spacing: 4px; text-transform: uppercase; color: var(--stone);
+            margin-bottom: 24px;
+        }
+        .project-card-cta {
+            display: inline-flex; align-items: center; gap: 12px;
+            font-family: var(--font-display); font-size: 12px; font-weight: 600;
+            letter-spacing: 3px; text-transform: uppercase; color: var(--gold);
+            opacity: 0; transform: translateY(16px);
+            transition: opacity 0.5s 0.1s, transform 0.5s 0.1s var(--ease-out-expo);
+        }
+        .project-card:hover .project-card-cta { opacity: 1; transform: translateY(0); }
+        .project-card-cta .arrow { transition: transform 0.3s var(--ease-out-expo); }
+        .project-card:hover .project-card-cta .arrow { transform: translateX(6px); }
+
+        /* Side line accent */
+        .project-card-line {
+            position: absolute; left: 48px; top: 50%; width: 2px; height: 0;
+            background: var(--gold); z-index: 2;
+            transition: height 0.6s var(--ease-out-expo), top 0.6s var(--ease-out-expo);
+        }
+        .project-card:hover .project-card-line { height: 80px; top: calc(50% - 40px); }
+
+        /* Image count badge */
+        .project-card-badge {
+            position: absolute; top: 50%; right: 48px; transform: translateY(-50%);
+            z-index: 2; text-align: right;
+        }
+        .project-card-badge-count {
+            font-family: var(--font-display); font-size: 64px; font-weight: 200;
+            line-height: 1; color: white; opacity: 0.08;
+            transition: opacity 0.5s;
+        }
+        .project-card:hover .project-card-badge-count { opacity: 0.2; }
+        .project-card-badge-label {
+            font-family: var(--font-display); font-size: 10px; font-weight: 500;
+            letter-spacing: 3px; text-transform: uppercase; color: var(--stone); opacity: 0.4;
+        }
+
+        /* ── IMMERSIVE GALLERY ──────────────────── */
+        .gallery {
+            position: fixed; inset: 0; z-index: 5000; background: var(--black);
+            opacity: 0; visibility: hidden;
+            transition: opacity 0.7s var(--ease-out-expo), visibility 0.7s;
+        }
+        .gallery.open { opacity: 1; visibility: visible; }
+
+        /* Main image (crossfade) */
+        .gallery-stage {
+            position: absolute; inset: 0;
+        }
+        .gallery-slide {
+            position: absolute; inset: 0;
+            opacity: 0; transition: opacity 0.9s ease-in-out;
+        }
+        .gallery-slide.active { opacity: 1; }
+        .gallery-slide img {
+            width: 100%; height: 100%; object-fit: cover;
+            animation: kenBurns 20s ease-in-out infinite alternate;
+        }
+        @keyframes kenBurns {
+            0% { transform: scale(1) translate(0, 0); }
+            100% { transform: scale(1.08) translate(-1%, -0.5%); }
+        }
+        .gallery-slide-overlay {
+            position: absolute; inset: 0;
+            background: linear-gradient(to top, rgba(10,10,10,0.75) 0%, rgba(10,10,10,0.05) 35%, rgba(10,10,10,0.2) 100%);
+        }
+
+        /* Header info */
+        .gallery-header {
+            position: absolute; top: 28px; left: 48px; z-index: 5010;
+            opacity: 0; transform: translateY(-12px);
+            transition: opacity 0.5s 0.3s, transform 0.5s 0.3s var(--ease-out-expo);
+        }
+        .gallery.open .gallery-header { opacity: 1; transform: translateY(0); }
+        .gallery-name { font-family: var(--font-display); font-size: 15px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; }
+        .gallery-type { font-family: var(--font-display); font-size: 11px; font-weight: 400; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); margin-top: 4px; }
+
+        /* Close */
+        .gallery-close {
+            position: absolute; top: 28px; right: 48px; z-index: 5010;
+            font-family: var(--font-display); font-size: 12px; font-weight: 500;
+            letter-spacing: 3px; text-transform: uppercase; color: var(--stone);
+            display: flex; align-items: center; gap: 12px;
+            opacity: 0; transform: translateY(-12px);
+            transition: opacity 0.5s 0.35s, transform 0.5s 0.35s var(--ease-out-expo), color 0.3s;
+        }
+        .gallery.open .gallery-close { opacity: 1; transform: translateY(0); }
+        .gallery-close:hover { color: var(--gold); }
+        .gallery-close-x { width: 28px; height: 28px; position: relative; }
+        .gallery-close-x::before, .gallery-close-x::after { content: ''; position: absolute; top: 50%; left: 50%; width: 18px; height: 1.5px; background: currentColor; }
+        .gallery-close-x::before { transform: translate(-50%,-50%) rotate(45deg); }
+        .gallery-close-x::after { transform: translate(-50%,-50%) rotate(-45deg); }
+
+        /* Image label (bottom left) */
+        .gallery-label {
+            position: absolute; bottom: 140px; left: 48px; z-index: 5010;
+        }
+        .gallery-label-text {
+            font-family: var(--font-display); font-size: 11px; font-weight: 500;
+            letter-spacing: 3px; text-transform: uppercase; color: var(--stone);
+            transition: opacity 0.4s; opacity: 0.7;
+        }
+        .gallery-counter {
+            font-family: var(--font-display); font-size: 11px; letter-spacing: 2px;
+            color: var(--text-muted); margin-top: 6px;
+        }
+        .gallery-counter .cur { color: var(--gold); font-weight: 600; }
+
+        /* Filmstrip (bottom) */
+        .gallery-filmstrip-wrap {
+            position: absolute; bottom: 0; left: 0; right: 0; z-index: 5010;
+            padding: 28px 48px 32px;
+            background: linear-gradient(to top, rgba(10,10,10,0.85) 0%, transparent 100%);
+            opacity: 0; transform: translateY(20px);
+            transition: opacity 0.5s 0.4s, transform 0.5s 0.4s var(--ease-out-expo);
+        }
+        .gallery.open .gallery-filmstrip-wrap { opacity: 1; transform: translateY(0); }
+        .gallery-filmstrip {
+            display: flex; gap: 10px; overflow-x: auto; scrollbar-width: none;
+            -ms-overflow-style: none; padding-bottom: 4px;
+        }
+        .gallery-filmstrip::-webkit-scrollbar { display: none; }
+        .gallery-thumb {
+            flex-shrink: 0; width: 100px; height: 64px; overflow: hidden;
+            cursor: pointer; position: relative;
+            opacity: 0.35; transition: opacity 0.4s, transform 0.3s var(--ease-out-expo);
+            border: 2px solid transparent;
+        }
+        .gallery-thumb:hover { opacity: 0.7; transform: translateY(-2px); }
+        .gallery-thumb.active {
+            opacity: 1; border-color: var(--gold);
+        }
+        .gallery-thumb img { width: 100%; height: 100%; object-fit: cover; }
+
+        /* Progress bar */
+        .gallery-progress {
+            width: 100%; height: 1px; background: rgba(196,184,168,0.1);
+            margin-top: 16px; position: relative;
+        }
+        .gallery-progress-fill {
+            height: 100%; background: var(--gold); width: 0;
+            transition: width 0.6s var(--ease-out-expo);
+        }
+
+        /* Nav arrows */
+        .gallery-arrow {
+            position: absolute; top: 50%; z-index: 5010;
+            width: 56px; height: 56px;
+            display: flex; align-items: center; justify-content: center;
+            border: 1px solid rgba(196,184,168,0.15); font-size: 20px; color: var(--stone);
+            transition: border-color 0.3s, background 0.3s, color 0.3s, transform 0.3s var(--ease-out-expo);
+            transform: translateY(-50%);
+        }
+        .gallery-arrow:hover { border-color: var(--gold); background: rgba(201,169,110,0.1); color: var(--gold); }
+        .gallery-arrow:active { transform: translateY(-50%) scale(0.95); }
+        .gallery-arrow.prev { left: 24px; }
+        .gallery-arrow.next { right: 24px; }
+        .gallery-arrow:disabled { opacity: 0.15; cursor: default; }
+        .gallery-arrow:disabled:hover { border-color: rgba(196,184,168,0.15); background: none; color: var(--stone); }
+
+        /* ── LIGHTBOX ───────────────────────────── */
+        .lightbox {
+            position: fixed; inset: 0; z-index: 6000;
+            background: rgba(0,0,0,0.96);
+            display: flex; align-items: center; justify-content: center;
+            opacity: 0; visibility: hidden; transition: opacity 0.4s, visibility 0.4s;
+            cursor: zoom-out;
+        }
+        .lightbox.open { opacity: 1; visibility: visible; }
+        .lightbox img {
+            max-width: 94vw; max-height: 94vh; object-fit: contain;
+            transform: scale(0.92); opacity: 0;
+            transition: transform 0.5s var(--ease-out-expo), opacity 0.4s;
+        }
+        .lightbox.open img { transform: scale(1); opacity: 1; }
+
+        /* ── CTA ────────────────────────────────── */
+        .cta-band { padding: 100px 48px; text-align: center; border-top: 1px solid rgba(196,184,168,0.06); }
+        .cta-band-label { font-family: var(--font-display); font-size: 11px; font-weight: 500; letter-spacing: 5px; text-transform: uppercase; color: var(--gold); margin-bottom: 16px; }
+        .cta-band h2 { font-family: var(--font-display); font-size: clamp(28px,3.5vw,48px); font-weight: 600; line-height: 1.15; margin-bottom: 32px; }
+        .cta-band h2 span { font-weight: 300; font-style: italic; color: var(--stone); }
+        .btn-primary { font-family: var(--font-display); font-size: 12px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; color: var(--black); background: var(--gold); padding: 18px 40px; display: inline-flex; align-items: center; gap: 12px; transition: background 0.3s, transform 0.3s, box-shadow 0.3s; }
+        .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); box-shadow: 0 10px 30px rgba(201,169,110,0.3); }
+
+        /* ── FOOTER ──────────────────────────────── */
+        .footer { padding: 40px 48px; border-top: 1px solid rgba(255,255,255,0.05); }
+        .footer-inner { max-width: 1400px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+        .footer-logo { height: 24px; filter: invert(1); }
+        .footer p { font-size: 12px; color: var(--text-muted); letter-spacing: 1px; }
+        .footer-links { display: flex; gap: 32px; }
+        .footer-links a { font-family: var(--font-display); font-size: 11px; font-weight: 500; letter-spacing: 2px; text-transform: uppercase; color: var(--text-muted); transition: color 0.3s; padding: 10px 0; }
+        .footer-links a:hover { color: var(--cream); }
+
+        /* ── SWIPE HINT ─────────────────────────── */
+        .swipe-hint {
+            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+            z-index: 5020; text-align: center; pointer-events: none;
+            opacity: 0; transition: opacity 0.4s;
+        }
+        .swipe-hint.show { opacity: 1; }
+        .swipe-hint-icon {
+            width: 40px; height: 40px; margin: 0 auto 10px;
+            animation: swipeAnim 1.5s ease-in-out infinite;
+        }
+        .swipe-hint-icon svg { width: 100%; height: 100%; fill: none; stroke: var(--gold); stroke-width: 1.5; }
+        @keyframes swipeAnim { 0%,100% { transform: translateX(0); opacity: 0.6; } 50% { transform: translateX(-16px); opacity: 1; } }
+        .swipe-hint-text {
+            font-family: var(--font-display); font-size: 10px; font-weight: 500;
+            letter-spacing: 3px; text-transform: uppercase; color: var(--stone);
+        }
+
+        /* ── RESPONSIVE ──────────────────────────── */
+        @media (max-width: 768px) {
+            .project-card { height: 70svh; min-height: 380px; }
+            .nav { padding: 16px 24px; }
+            .nav-links, .nav-cta { display: none; }
+            .nav-toggle { display: flex; }
+            .mobile-menu { display: flex; }
+            .project-card-content { padding: 32px 24px; }
+            .project-card-line { left: 24px; }
+            .project-card-badge { right: 24px; }
+            .project-card-badge-count { font-size: 40px; }
+            .gallery-header { left: 24px; }
+            .gallery-close { right: 24px; }
+            .gallery-label { bottom: 130px; left: 24px; }
+            .gallery-filmstrip-wrap { padding: 20px 16px 24px; }
+            .gallery-thumb { width: 72px; height: 48px; }
+            .gallery-arrow { display: none; }
+            .cta-band { padding: 64px 24px; }
+            .footer { padding: 32px 24px; }
+            .footer-inner { flex-direction: column; gap: 20px; text-align: center; }
+            .cursor-dot, .cursor-ring { display: none; }
+        }
+
+        @media (max-width: 480px) {
+            .project-card-title { font-size: 42px; }
+            .project-card-badge-count { font-size: 32px; }
+            .project-card-type { font-size: 11px; letter-spacing: 3px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="grain"></div>
+    <div class="cursor-dot" id="cursorDot"></div>
+    <div class="cursor-ring" id="cursorRing"></div>
+
+    <nav class="nav" id="nav">
+        <a href="index.html"><img src="https://templconstructions.com.au/cdn/shop/files/templ-logo-black.png?v=1732082939&width=300" alt="Templ Constructions" class="nav-logo"></a>
+        <ul class="nav-links">
+            <li><a href="index.html#about">About</a></li>
+            <li><a href="index.html#services">Services</a></li>
+            <li><a href="projects.html" class="active">Projects</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="index.html#contact">Contact</a></li>
+        </ul>
+        <a href="index.html#contact" class="nav-cta">Book a Call</a>
+        <button class="nav-toggle" id="navToggle" aria-label="Open menu"><span></span><span></span><span></span></button>
+    </nav>
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="index.html#about" class="mobile-link">About</a>
+        <a href="index.html#services" class="mobile-link">Services</a>
+        <a href="projects.html" class="mobile-link" style="color:var(--gold)">Projects</a>
+        <a href="blog.html" class="mobile-link">Blog</a>
+        <a href="index.html#contact" class="mobile-link">Contact</a>
+        <a href="index.html#contact" class="mobile-link">Book a Call</a>
+    </div>
+
+    <main>
+        <!-- ─── PROJECT HERO CARDS ─────────────────── -->
+        <section class="project-card" data-project="abbotsford">
+            <div class="project-card-bg"><img src="https://templconstructions.com.au/cdn/shop/files/ABBOTS-6.jpg?v=1754613642&width=1920" srcset="https://templconstructions.com.au/cdn/shop/files/ABBOTS-6.jpg?v=1754613642&width=750 750w, https://templconstructions.com.au/cdn/shop/files/ABBOTS-6.jpg?v=1754613642&width=1200 1200w, https://templconstructions.com.au/cdn/shop/files/ABBOTS-6.jpg?v=1754613642&width=1920 1920w" sizes="100vw" alt="Abbotsford renovation by Templ Constructions"></div>
+            <div class="project-card-overlay"></div>
+            <div class="project-card-line"></div>
+            <div class="project-card-content">
+                <p class="project-card-number">01</p>
+                <h2 class="project-card-title">Abbotsford</h2>
+                <p class="project-card-type">Renovation</p>
+                <span class="project-card-cta">Explore Project <span class="arrow">&rarr;</span></span>
+            </div>
+            <div class="project-card-badge"><div class="project-card-badge-count">07</div><div class="project-card-badge-label">Photos</div></div>
+        </section>
+
+        <section class="project-card" data-project="rhyll">
+            <div class="project-card-bg"><img src="https://templconstructions.com.au/cdn/shop/files/rhyll-1.jpg?v=1754610931&width=1920" srcset="https://templconstructions.com.au/cdn/shop/files/rhyll-1.jpg?v=1754610931&width=750 750w, https://templconstructions.com.au/cdn/shop/files/rhyll-1.jpg?v=1754610931&width=1200 1200w, https://templconstructions.com.au/cdn/shop/files/rhyll-1.jpg?v=1754610931&width=1920 1920w" sizes="100vw" alt="Rhyll coastal build by Templ Constructions"></div>
+            <div class="project-card-overlay"></div>
+            <div class="project-card-line"></div>
+            <div class="project-card-content">
+                <p class="project-card-number">02</p>
+                <h2 class="project-card-title">Rhyll</h2>
+                <p class="project-card-type">Coastal Build</p>
+                <span class="project-card-cta">Explore Project <span class="arrow">&rarr;</span></span>
+            </div>
+            <div class="project-card-badge"><div class="project-card-badge-count">07</div><div class="project-card-badge-label">Photos</div></div>
+        </section>
+
+        <section class="project-card" data-project="richmond">
+            <div class="project-card-bg"><img src="https://templconstructions.com.au/cdn/shop/files/DSC07682_HDR.jpg?v=1731386461&width=1920" srcset="https://templconstructions.com.au/cdn/shop/files/DSC07682_HDR.jpg?v=1731386461&width=750 750w, https://templconstructions.com.au/cdn/shop/files/DSC07682_HDR.jpg?v=1731386461&width=1200 1200w, https://templconstructions.com.au/cdn/shop/files/DSC07682_HDR.jpg?v=1731386461&width=1920 1920w" sizes="100vw" alt="Richmond renovation by Templ Constructions"></div>
+            <div class="project-card-overlay"></div>
+            <div class="project-card-line"></div>
+            <div class="project-card-content">
+                <p class="project-card-number">03</p>
+                <h2 class="project-card-title">Richmond</h2>
+                <p class="project-card-type">Full Renovation</p>
+                <span class="project-card-cta">Explore Project <span class="arrow">&rarr;</span></span>
+            </div>
+            <div class="project-card-badge"><div class="project-card-badge-count">05</div><div class="project-card-badge-label">Photos</div></div>
+        </section>
+
+        <section class="project-card" data-project="cheltenham">
+            <div class="project-card-bg"><img src="https://templconstructions.com.au/cdn/shop/files/CHELT-2.jpg?v=1754613980&width=1920" srcset="https://templconstructions.com.au/cdn/shop/files/CHELT-2.jpg?v=1754613980&width=750 750w, https://templconstructions.com.au/cdn/shop/files/CHELT-2.jpg?v=1754613980&width=1200 1200w, https://templconstructions.com.au/cdn/shop/files/CHELT-2.jpg?v=1754613980&width=1920 1920w" sizes="100vw" alt="Cheltenham project by Templ Constructions"></div>
+            <div class="project-card-overlay"></div>
+            <div class="project-card-line"></div>
+            <div class="project-card-content">
+                <p class="project-card-number">04</p>
+                <h2 class="project-card-title">Cheltenham</h2>
+                <p class="project-card-type">Kitchen &amp; Bathroom</p>
+                <span class="project-card-cta">Explore Project <span class="arrow">&rarr;</span></span>
+            </div>
+            <div class="project-card-badge"><div class="project-card-badge-count">05</div><div class="project-card-badge-label">Photos</div></div>
+        </section>
+
+        <section class="project-card" data-project="albertpark">
+            <div class="project-card-bg"><img src="https://templconstructions.com.au/cdn/shop/files/albertpark.jpg?v=1741835865&width=1920" srcset="https://templconstructions.com.au/cdn/shop/files/albertpark.jpg?v=1741835865&width=750 750w, https://templconstructions.com.au/cdn/shop/files/albertpark.jpg?v=1741835865&width=1200 1200w, https://templconstructions.com.au/cdn/shop/files/albertpark.jpg?v=1741835865&width=1920 1920w" sizes="100vw" alt="Albert Park renovation by Templ Constructions"></div>
+            <div class="project-card-overlay"></div>
+            <div class="project-card-line"></div>
+            <div class="project-card-content">
+                <p class="project-card-number">05</p>
+                <h2 class="project-card-title">Albert Park</h2>
+                <p class="project-card-type">Renovation</p>
+                <span class="project-card-cta">Explore Project <span class="arrow">&rarr;</span></span>
+            </div>
+            <div class="project-card-badge"><div class="project-card-badge-count">03</div><div class="project-card-badge-label">Photos</div></div>
+        </section>
+
+        <!-- ─── CTA ────────────────────────────────── -->
+        <section class="cta-band">
+            <p class="cta-band-label">Start Your Project</p>
+            <h2>Have a Vision? <span>Let's Build It Together</span></h2>
+            <a href="index.html#contact" class="btn-primary">Get in Touch <span>&rarr;</span></a>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-inner">
+            <a href="index.html"><img src="https://templconstructions.com.au/cdn/shop/files/templ-logo-black.png?v=1732082939&width=300" alt="Templ Constructions" class="footer-logo"></a>
+            <p>&copy; 2026 Templ Constructions. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="index.html">Home</a>
+                <a href="blog.html">Blog</a>
+                <a href="https://www.instagram.com/templconstructions/" target="_blank" rel="noopener">Instagram</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ─── GALLERY OVERLAY ────────────────────── -->
+    <div class="gallery" id="gallery">
+        <div class="gallery-stage" id="galleryStage"></div>
+        <div class="gallery-header"><div class="gallery-name" id="gName"></div><div class="gallery-type" id="gType"></div></div>
+        <button class="gallery-close" id="galleryClose" aria-label="Close gallery"><span>Close</span><span class="gallery-close-x"></span></button>
+        <div class="swipe-hint" id="swipeHint">
+            <div class="swipe-hint-icon"><svg viewBox="0 0 40 40"><path d="M28 20H12M16 14l-6 6 6 6"/></svg></div>
+            <div class="swipe-hint-text">Swipe to navigate</div>
+        </div>
+        <button class="gallery-arrow prev" id="gPrev" aria-label="Previous">&larr;</button>
+        <button class="gallery-arrow next" id="gNext" aria-label="Next">&rarr;</button>
+        <div class="gallery-label"><div class="gallery-label-text" id="gLabel"></div><div class="gallery-counter"><span class="cur" id="gCur">1</span> / <span id="gTot">1</span></div></div>
+        <div class="gallery-filmstrip-wrap">
+            <div class="gallery-filmstrip" id="gFilmstrip"></div>
+            <div class="gallery-progress"><div class="gallery-progress-fill" id="gProgress"></div></div>
+        </div>
+    </div>
+
+    <!-- ─── LIGHTBOX ───────────────────────────── -->
+    <div class="lightbox" id="lightbox"><img id="lbImg" src="" alt=""></div>
+
+    <script>
+    (function() {
+        var CDN = 'https://templconstructions.com.au/cdn/shop/files/';
+        var projects = {
+            abbotsford: { name: 'Abbotsford', type: 'Renovation', images: [
+                { src: CDN+'ABBOT-2.jpg?v=1754613642', label: 'Living Space' },
+                { src: CDN+'ABBOTS-1.jpg?v=1754613642', label: 'Exterior' },
+                { src: CDN+'ABBOTS-4.jpg?v=1754613642', label: 'Kitchen' },
+                { src: CDN+'Abbots-7.jpg?v=1754613642', label: 'Detail' },
+                { src: CDN+'abbots-8.jpg?v=1754613642', label: 'Bathroom' },
+                { src: CDN+'abbots-9.jpg?v=1754613642', label: 'Bedroom' },
+                { src: CDN+'ABBOTS-6.jpg?v=1754613642', label: 'Interior' }
+            ]},
+            rhyll: { name: 'Rhyll', type: 'Coastal Build', images: [
+                { src: CDN+'Rhyll-10.jpg?v=1754617094', label: 'Street View' },
+                { src: CDN+'rhyll-1.jpg?v=1754610931', label: 'Facade' },
+                { src: CDN+'Rhyll-6.jpg?v=1754617092', label: 'Living Area' },
+                { src: CDN+'Rhyll-11.jpg?v=1754617092', label: 'Kitchen' },
+                { src: CDN+'Rhyll-3.jpg?v=1754617093', label: 'Dining' },
+                { src: CDN+'Rhyll-9.jpg?v=1754617093', label: 'Bathroom' },
+                { src: CDN+'rhyll-4.jpg?v=1754617093', label: 'Bedroom' }
+            ]},
+            richmond: { name: 'Richmond', type: 'Full Renovation', images: [
+                { src: CDN+'DSC07682_HDR.jpg?v=1731386461', label: 'Living Room' },
+                { src: CDN+'DSC07667_HDR.jpg?v=1731381998', label: 'Kitchen' },
+                { src: CDN+'DSC07707_HDR.jpg?v=1732073575', label: 'Dining Area' },
+                { src: CDN+'DSC07732_HDR.jpg?v=1754614749', label: 'Bathroom' },
+                { src: CDN+'DSC07722_HDR.jpg?v=1754614749', label: 'Bedroom' }
+            ]},
+            cheltenham: { name: 'Cheltenham', type: 'Kitchen & Bathroom', images: [
+                { src: CDN+'CHELT-2.jpg?v=1754613980', label: 'Kitchen' },
+                { src: CDN+'CHELT-1.jpg?v=1754613980', label: 'Living' },
+                { src: CDN+'CHELT-4.jpg?v=1754613980', label: 'Detail' },
+                { src: CDN+'cheltenham_bathroom_-_2.jpg?v=1754610567', label: 'Bathroom' },
+                { src: CDN+'CHELT-8.jpg?v=1754614228', label: 'Exterior' }
+            ]},
+            albertpark: { name: 'Albert Park', type: 'Renovation', images: [
+                { src: CDN+'albertpark.jpg?v=1741835865', label: 'Exterior' },
+                { src: CDN+'kitchen_-3.jpg?v=1754610235', label: 'Kitchen' },
+                { src: CDN+'gallery_1.jpg?v=1733278556', label: 'Living Space' }
+            ]}
+        };
+
+        // ── Cursor ──────────────────────────────
+        var dot = document.getElementById('cursorDot'), ring = document.getElementById('cursorRing');
+        var mx = 0, my = 0, rx = 0, ry = 0;
+        document.addEventListener('mousemove', function(e) {
+            mx = e.clientX; my = e.clientY;
+            dot.style.transform = 'translate('+(mx-4)+'px,'+(my-4)+'px)';
+        });
+        (function ac() { rx+=(mx-rx)*0.12; ry+=(my-ry)*0.12; ring.style.transform='translate('+(rx-20)+'px,'+(ry-20)+'px)'; requestAnimationFrame(ac); })();
+        document.querySelectorAll('a,button,.project-card,.gallery-thumb').forEach(function(el) {
+            el.addEventListener('mouseenter', function() { ring.classList.add('hover'); });
+            el.addEventListener('mouseleave', function() { ring.classList.remove('hover'); });
+        });
+
+        // ── Mobile menu ─────────────────────────
+        var toggle = document.getElementById('navToggle'), mob = document.getElementById('mobileMenu');
+        toggle.addEventListener('click', function() {
+            toggle.classList.toggle('active'); mob.classList.toggle('open');
+            document.body.style.overflow = mob.classList.contains('open') ? 'hidden' : '';
+        });
+        document.querySelectorAll('.mobile-link').forEach(function(l) {
+            l.addEventListener('click', function() { toggle.classList.remove('active'); mob.classList.remove('open'); document.body.style.overflow=''; });
+        });
+
+        // ── Gallery ─────────────────────────────
+        var gallery = document.getElementById('gallery');
+        var stage = document.getElementById('galleryStage');
+        var filmstrip = document.getElementById('gFilmstrip');
+        var gName = document.getElementById('gName'), gType = document.getElementById('gType');
+        var gLabel = document.getElementById('gLabel'), gCur = document.getElementById('gCur'), gTot = document.getElementById('gTot');
+        var gProgress = document.getElementById('gProgress');
+        var gPrev = document.getElementById('gPrev'), gNext = document.getElementById('gNext');
+        var nav = document.getElementById('nav');
+        var idx = 0, imgs = [];
+
+        function openGallery(key) {
+            var p = projects[key]; if (!p) return;
+            imgs = p.images; idx = 0;
+            gName.textContent = p.name; gType.textContent = p.type;
+            gTot.textContent = String(imgs.length);
+
+            // Build slides
+            while (stage.firstChild) stage.removeChild(stage.firstChild);
+            imgs.forEach(function(im, i) {
+                var slide = document.createElement('div');
+                slide.className = 'gallery-slide' + (i === 0 ? ' active' : '');
+                var img = document.createElement('img');
+                img.src = im.src + '&width=1920';
+                img.alt = p.name + ' — ' + im.label;
+                img.loading = i < 2 ? 'eager' : 'lazy';
+                // Randomize ken burns direction per slide
+                img.style.animationDuration = (18 + Math.random()*8) + 's';
+                img.style.animationDirection = i % 2 === 0 ? 'alternate' : 'alternate-reverse';
+                var ov = document.createElement('div'); ov.className = 'gallery-slide-overlay';
+                slide.appendChild(img); slide.appendChild(ov);
+                stage.appendChild(slide);
+
+                // Tap to zoom (suppressed during swipe)
+                slide.addEventListener('click', function() {
+                    if (swiped) return;
+                    openLightbox(im.src + '&width=2560', p.name + ' — ' + im.label);
+                });
+            });
+
+            // Build filmstrip
+            while (filmstrip.firstChild) filmstrip.removeChild(filmstrip.firstChild);
+            imgs.forEach(function(im, i) {
+                var th = document.createElement('div');
+                th.className = 'gallery-thumb' + (i === 0 ? ' active' : '');
+                var img = document.createElement('img');
+                img.src = im.src + '&width=200'; img.alt = im.label; img.loading = 'lazy';
+                th.appendChild(img);
+                th.addEventListener('click', function() { goTo(i); });
+                filmstrip.appendChild(th);
+            });
+
+            gallery.classList.add('open');
+            nav.classList.add('hidden');
+            document.body.style.overflow = 'hidden';
+            updateGallery();
+
+            // Show swipe hint on touch devices
+            if ('ontouchstart' in window) {
+                var hint = document.getElementById('swipeHint');
+                hint.classList.add('show');
+                setTimeout(function() { hint.classList.remove('show'); }, 2500);
+            }
+        }
+
+        function closeGallery() {
+            gallery.classList.remove('open'); nav.classList.remove('hidden');
+            document.body.style.overflow = '';
+        }
+
+        function goTo(i) {
+            idx = Math.max(0, Math.min(i, imgs.length - 1));
+            updateGallery();
+        }
+
+        function updateGallery() {
+            stage.querySelectorAll('.gallery-slide').forEach(function(s, i) { s.classList.toggle('active', i === idx); });
+            filmstrip.querySelectorAll('.gallery-thumb').forEach(function(t, i) { t.classList.toggle('active', i === idx); });
+            // Scroll active thumb into view
+            var activeThumb = filmstrip.querySelector('.gallery-thumb.active');
+            if (activeThumb) activeThumb.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+
+            gCur.textContent = String(idx + 1);
+            gLabel.textContent = imgs[idx].label;
+            gProgress.style.width = ((idx + 1) / imgs.length * 100) + '%';
+            gPrev.disabled = idx === 0;
+            gNext.disabled = idx === imgs.length - 1;
+        }
+
+        // Events
+        document.querySelectorAll('.project-card').forEach(function(card) {
+            card.addEventListener('click', function() { openGallery(card.getAttribute('data-project')); });
+        });
+        document.getElementById('galleryClose').addEventListener('click', closeGallery);
+        gPrev.addEventListener('click', function(e) { e.stopPropagation(); goTo(idx - 1); });
+        gNext.addEventListener('click', function(e) { e.stopPropagation(); goTo(idx + 1); });
+
+        // Keyboard
+        document.addEventListener('keydown', function(e) {
+            var lb = document.getElementById('lightbox');
+            if (lb.classList.contains('open')) { if (e.key === 'Escape') closeLightbox(); return; }
+            if (!gallery.classList.contains('open')) return;
+            if (e.key === 'ArrowRight') goTo(idx + 1);
+            else if (e.key === 'ArrowLeft') goTo(idx - 1);
+            else if (e.key === 'Escape') closeGallery();
+        });
+
+        // Swipe (with movement threshold to prevent click conflicts)
+        var tx = 0, swiped = false;
+        gallery.addEventListener('touchstart', function(e) { tx = e.touches[0].clientX; swiped = false; }, { passive: true });
+        gallery.addEventListener('touchmove', function(e) {
+            if (Math.abs(e.touches[0].clientX - tx) > 10) swiped = true;
+        }, { passive: true });
+        gallery.addEventListener('touchend', function(e) {
+            var d = tx - e.changedTouches[0].clientX;
+            if (Math.abs(d) > 60) { d > 0 ? goTo(idx+1) : goTo(idx-1); }
+        }, { passive: true });
+
+        // Wheel
+        var wt;
+        gallery.addEventListener('wheel', function(e) {
+            if (wt) return; wt = setTimeout(function() { wt = null; }, 500);
+            (e.deltaY > 0 || e.deltaX > 0) ? goTo(idx+1) : goTo(idx-1);
+        }, { passive: true });
+
+        // ── Lightbox ────────────────────────────
+        var lightbox = document.getElementById('lightbox'), lbImg = document.getElementById('lbImg');
+        function openLightbox(src, alt) { lbImg.src = src; lbImg.alt = alt; lightbox.classList.add('open'); }
+        function closeLightbox() { lightbox.classList.remove('open'); }
+        lightbox.addEventListener('click', closeLightbox);
+
+        // ── Parallax on hero cards ──────────────
+        if (window.matchMedia('(pointer: fine)').matches) {
+            document.querySelectorAll('.project-card').forEach(function(card) {
+                card.addEventListener('mousemove', function(e) {
+                    var rect = card.getBoundingClientRect();
+                    var x = (e.clientX - rect.left) / rect.width - 0.5;
+                    var y = (e.clientY - rect.top) / rect.height - 0.5;
+                    var img = card.querySelector('.project-card-bg img');
+                    img.style.transform = 'scale(1.04) translate(' + (x * -12) + 'px,' + (y * -12) + 'px)';
+                });
+                card.addEventListener('mouseleave', function() {
+                    card.querySelector('.project-card-bg img').style.transform = '';
+                });
+            });
+        }
+
+    })();
+    </script>
+</body>
+</html>
