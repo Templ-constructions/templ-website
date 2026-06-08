@@ -567,9 +567,9 @@ button { font-family: inherit; cursor: pointer; }
 .contact-head p {
   font-family: var(--sans);
   font-weight: 300;
-  font-size: 14px;
-  color: var(--text-muted);
-  line-height: 1.8;
+  font-size: 16px;
+  color: var(--text-soft);
+  line-height: 1.85;
   margin: 0;
 }
 
@@ -602,9 +602,9 @@ button { font-family: inherit; cursor: pointer; }
   margin-top: 12px;
   font-family: var(--sans);
   font-weight: 300;
-  font-size: 14px;
+  font-size: 15px;
   letter-spacing: 0.04em;
-  color: var(--text-muted);
+  color: var(--text-soft);
   transition: color 0.3s ease;
 }
 .contact-direct-email:hover { color: var(--gold); }
@@ -627,9 +627,9 @@ button { font-family: inherit; cursor: pointer; }
 .fee-notice p {
   font-family: var(--sans);
   font-weight: 300;
-  font-size: 13px;
-  color: var(--text-muted);
-  line-height: 1.8;
+  font-size: 14px;
+  color: var(--text-soft);
+  line-height: 1.85;
   margin: 0;
 }
 
@@ -638,12 +638,12 @@ button { font-family: inherit; cursor: pointer; }
 .field-label {
   display: block;
   font-family: var(--sans);
-  font-weight: 200;
-  font-size: 10px;
-  letter-spacing: 0.25em;
+  font-weight: 300;
+  font-size: 12px;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
   color: var(--gold);
-  margin-bottom: 10px;
+  margin-bottom: 12px;
 }
 .form-field input[type="text"],
 .form-field input[type="tel"],
@@ -657,8 +657,8 @@ button { font-family: inherit; cursor: pointer; }
   color: var(--text);
   font-family: var(--sans);
   font-weight: 300;
-  font-size: 14px;
-  padding: 12px 0;
+  font-size: 16px;
+  padding: 13px 0;
   border-radius: 0;
   transition: border-color 0.3s ease;
   -webkit-appearance: none;
@@ -672,7 +672,7 @@ button { font-family: inherit; cursor: pointer; }
   border-bottom-color: var(--gold);
 }
 .form-field input::placeholder,
-.form-field textarea::placeholder { color: var(--text-dimmer); }
+.form-field textarea::placeholder { color: var(--text-dim); }
 .form-field select option { background: var(--bg-alt); color: var(--text); }
 
 /* Checkbox group */
@@ -683,7 +683,7 @@ button { font-family: inherit; cursor: pointer; }
   gap: 12px;
   font-family: var(--sans);
   font-weight: 300;
-  font-size: 14px;
+  font-size: 15px;
   letter-spacing: 0;
   text-transform: none;
   color: var(--text-soft);
