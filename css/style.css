@@ -573,6 +573,42 @@ button { font-family: inherit; cursor: pointer; }
   margin: 0;
 }
 
+.contact-direct {
+  margin: 40px 0 0;
+  padding-top: 36px;
+  border-top: 1px solid var(--border);
+}
+.contact-direct-label {
+  font-family: var(--sans);
+  font-weight: 200;
+  font-size: 10px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin: 0 0 16px;
+}
+.contact-direct-phone {
+  display: inline-block;
+  font-family: var(--serif);
+  font-weight: 300;
+  font-size: 34px;
+  letter-spacing: 0.02em;
+  color: var(--text);
+  transition: color 0.3s ease;
+}
+.contact-direct-phone:hover { color: var(--gold); }
+.contact-direct-email {
+  display: block;
+  margin-top: 12px;
+  font-family: var(--sans);
+  font-weight: 300;
+  font-size: 14px;
+  letter-spacing: 0.04em;
+  color: var(--text-muted);
+  transition: color 0.3s ease;
+}
+.contact-direct-email:hover { color: var(--gold); }
+
 .fee-notice {
   background: var(--bg-alt);
   border-left: 3px solid var(--gold);
@@ -865,6 +901,7 @@ button { font-family: inherit; cursor: pointer; }
   /* Contact */
   .contact-wrap { padding: 120px 24px 80px; }
   .contact-head h1 { font-size: 34px; }
+  .contact-direct-phone { font-size: 28px; }
   .btn-submit { width: 100%; }
 
   /* Reviews */
