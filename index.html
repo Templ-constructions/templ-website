@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Templ Constructions — Premium Melbourne Builders</title>
+  <meta name="description" content="Templ Constructions — premium Melbourne residential building. Renovations, extensions and second storey additions, executed to an architectural standard.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@200;300;400&display=swap" rel="stylesheet">
+
+  <link rel="preload" as="video" href="assets/videos/hero-homepage.mp4" type="video/mp4">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="home">
+
+  <!-- Loading screen (homepage only) -->
+  <div id="loader">
+    <img class="loader-logo" src="assets/logo/Templ_Primary_Logo_White.svg" alt="Templ Constructions">
+    <div class="loader-bar"><span></span></div>
+  </div>
+
+  <!-- Hero video -->
+  <video class="hero-video" id="heroVideo" autoplay muted loop playsinline preload="auto">
+    <source src="assets/videos/hero-homepage.mp4" type="video/mp4">
+  </video>
+  <div class="video-overlay"></div>
+
+  <!-- Logo -->
+  <a href="index.html" aria-label="Templ Constructions home">
+    <img class="home-logo" id="homeLogo" src="assets/logo/Templ_Primary_Logo_White.svg" alt="Templ Constructions">
+  </a>
+
+  <!-- CTA -->
+  <a class="home-cta" href="https://calendly.com/james-templconstructions/30min" target="_blank" rel="noopener">
+    <span class="cta-text">Book a 30-Minute Discovery Call</span>
+    <span class="cta-underline"></span>
+  </a>
+
+  <div id="page-transition"></div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

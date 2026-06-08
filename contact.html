@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact — Templ Constructions</title>
+  <meta name="description" content="Start a conversation with Templ Constructions. Tell us about your project and we'll be in touch within 48 hours.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@200;300;400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <nav class="nav">
+    <a href="index.html" aria-label="Templ Constructions home"><img class="nav-logo" src="assets/logo/Templ_Primary_Logo_White.svg" alt="Templ Constructions"></a>
+    <div class="nav-links">
+      <a href="about.html">About</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="contact.html" class="active">Contact</a>
+      <a href="reviews.html">Reviews</a>
+    </div>
+    <button class="nav-toggle" id="navToggle" aria-label="Open menu">&#9776;</button>
+  </nav>
+  <div class="mobile-nav" id="mobileNav">
+    <button class="mobile-close" id="mobileClose" aria-label="Close menu">&times;</button>
+    <a href="about.html">About</a>
+    <a href="gallery.html">Gallery</a>
+    <a href="contact.html" class="active">Contact</a>
+    <a href="reviews.html">Reviews</a>
+  </div>
+
+  <div class="nav-spacer"></div>
+
+  <div class="contact-wrap">
+    <div class="contact-head">
+      <p class="gold-label reveal">Start a Conversation</p>
+      <h1 class="reveal">Tell Us About Your Project</h1>
+      <p class="reveal">We don't take every project. We take the right ones — and we give them everything. Complete this form honestly and we'll be in touch within 48 hours.</p>
+    </div>
+
+    <div class="fee-notice reveal">
+      <h3>Quoting Fee Notice</h3>
+      <p>Templ Constructions does not provide free quotes. A quoting fee is issued prior to the preparation of your proposal, determined by the scale and complexity of the project. Should you proceed with Templ, the full fee is deducted from your first progress payment. The fee is only forfeited if you choose not to proceed.</p>
+    </div>
+
+    <!-- Netlify form -->
+    <form name="contact-enquiry" method="POST" data-netlify="true" netlify-honeypot="bot-field" id="contactForm">
+      <input type="hidden" name="form-name" value="contact-enquiry">
+      <p hidden><label>Don't fill this out: <input name="bot-field"></label></p>
+
+      <div class="form-field reveal">
+        <label for="fullname">Full Name(s)</label>
+        <input type="text" id="fullname" name="full-name" required>
+      </div>
+
+      <div class="form-field reveal">
+        <label for="phone">Contact Number</label>
+        <input type="tel" id="phone" name="contact-number" required>
+      </div>
+
+      <div class="form-field reveal">
+        <label for="email">Email Address</label>
+        <input type="email" id="email" name="email" required>
+      </div>
+
+      <div class="form-field reveal">
+        <label for="address">Project Suburb &amp; Address</label>
+        <input type="text" id="address" name="project-address" required>
+      </div>
+
+      <div class="form-field reveal">
+        <label for="source">How Did You Find Us?</label>
+        <select id="source" name="how-did-you-find-us" required>
+          <option value="" disabled selected></option>
+          <option>Referral</option>
+          <option>Google</option>
+          <option>Instagram (@templconstructions)</option>
+          <option>Instagram (@jamesroney.build)</option>
+          <option>Previous client</option>
+          <option>Other</option>
+        </select>
+      </div>
+
+      <div class="form-field reveal">
+        <span class="field-label">Type of Work</span>
+        <div class="checkbox-group">
+          <label><input type="checkbox" name="type-of-work" value="Renovation / Extension"> Renovation / Extension</label>
+          <label><input type="checkbox" name="type-of-work" value="Second Storey Addition"> Second Storey Addition</label>
+          <label><input type="checkbox" name="type-of-work" value="New Residential Build"> New Residential Build</label>
+          <label><input type="checkbox" name="type-of-work" value="Knockdown Rebuild"> Knockdown Rebuild</label>
+          <label><input type="checkbox" name="type-of-work" value="Other"> Other</label>
+        </div>
+      </div>
+
+      <div class="form-field reveal">
+        <label for="describe">Describe Your Project</label>
+        <textarea id="describe" name="project-description" rows="5" required placeholder="Tell us what you're building or changing, and what outcome you're hoping for."></textarea>
+      </div>
+
+      <div class="form-field reveal">
+        <label for="budget">Confirmed Budget Range</label>
+        <select id="budget" name="budget-range" required>
+          <option value="" disabled selected></option>
+          <option>Under $150,000</option>
+          <option>$150,000 – $300,000</option>
+          <option>$300,000 – $500,000</option>
+          <option>$500,000 – $750,000</option>
+          <option>$750,000 – $1,000,000</option>
+          <option>Over $1,000,000</option>
+          <option>Unsure — I'd like guidance</option>
+        </select>
+      </div>
+
+      <div class="form-field reveal">
+        <label for="stage">Where Is Your Project At?</label>
+        <select id="stage" name="project-stage" required>
+          <option value="" disabled selected></option>
+          <option>Early concept / idea stage</option>
+          <option>Planning permit approved</option>
+          <option>Working drawings complete</option>
+          <option>Building permit approved / ready to build</option>
+        </select>
+      </div>
+
+      <button type="submit" class="btn-submit">Submit Enquiry</button>
+    </form>
+
+    <div class="form-thanks" id="formThanks" style="display:none;">
+      <h2>Thank you.</h2>
+      <p>We've received your enquiry and will be in touch within 48 hours.</p>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="footer-cols">
+      <div class="footer-left">
+        <img class="footer-logo" src="assets/logo/Templ_Primary_Logo_White.svg" alt="Templ Constructions">
+        <p class="footer-tag">Our Project, Your Templ</p>
+      </div>
+      <div class="footer-nav">
+        <a href="about.html">About</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="contact.html">Contact</a>
+        <a href="reviews.html">Reviews</a>
+      </div>
+      <div class="footer-contact">
+        <a href="mailto:james@templconstructions.com.au">james@templconstructions.com.au</a><br>
+        <a href="tel:0438690815">0438 690 815</a><br>
+        @templconstructions<br>
+        @jamesroney.build<br>
+        Registered Builder — CDB-U 75404
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2025 Templ Constructions. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <div id="page-transition"></div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
