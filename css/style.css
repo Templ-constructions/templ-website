@@ -179,6 +179,23 @@ button { font-family: inherit; cursor: pointer; }
   opacity: 0;
   will-change: opacity;
 }
+.home-toggle {
+  position: fixed;
+  top: 32px;
+  right: 40px;
+  z-index: 10;
+  background: none;
+  border: none;
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 20px;
+  line-height: 1;
+  padding: 4px;
+  opacity: 0;                 /* fades in subtly after the loader exits */
+  transition: color 0.3s ease;
+  will-change: opacity;
+}
+.home-toggle:hover { color: var(--gold); }
+
 .home-cta {
   position: fixed;
   bottom: 48px;
@@ -813,6 +830,7 @@ button { font-family: inherit; cursor: pointer; }
 @media (max-width: 768px) {
   /* Homepage */
   .home-logo { width: 80px; top: 28px; left: 24px; }
+  .home-toggle { top: 26px; right: 24px; }
   .home-cta { bottom: 40px; }
   .home-cta .cta-text { font-size: 10px; letter-spacing: 0.15em; }
   #loader .loader-logo { width: 80px; }

@@ -89,9 +89,13 @@ document.addEventListener('DOMContentLoaded', function () {
 
   function revealHomeChrome() {
     const homeLogo = document.getElementById('homeLogo');
+    const homeToggle = document.querySelector('.home-toggle');
     const ctaUnderline = document.querySelector('.home-cta .cta-underline');
     if (homeLogo) {
       gsap.to(homeLogo, { opacity: 1, duration: 1, delay: 1, ease: 'power2.out' });
+    }
+    if (homeToggle) {
+      gsap.to(homeToggle, { opacity: 1, duration: 1, delay: 1.2, ease: 'power2.out' });
     }
     if (ctaUnderline) {
       gsap.to(ctaUnderline, { scaleX: 1, duration: 1.4, delay: 1, ease: 'power3.out' });
