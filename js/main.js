@@ -117,30 +117,136 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   /* ----------------------------------------------------------------------
-     SCROLL REVEALS — fade-up, gold lines, image reveals (play once)
+     SCROLL REVEALS — IntersectionObserver only (no external library)
+     Fade-up on .reveal, scaleX on .gold-line, fade-in on .img-reveal. The
+     CSS holds the start/end states; we just toggle .is-visible. Elements
+     trigger early (top crosses ~90% of the viewport) so a 0.5s reveal is
+     finished and readable well before the user scrolls past. Children of a
+     [data-stagger] block animate in 100ms steps. Honours reduced-motion.
      ---------------------------------------------------------------------- */
-  // Fade-up
-  gsap.utils.toArray('.reveal').forEach(function (el) {
-    gsap.to(el, {
-      opacity: 1, y: 0, duration: 1.2, ease: 'power2.out',
-      scrollTrigger: { trigger: el, start: 'top 88%', once: true }
-    });
-  });
+  (function initReveals() {
+    const revealEls = document.querySelectorAll('.reveal, .gold-line, .img-reveal');
+    if (!revealEls.length) return;
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  // Gold accent lines
-  gsap.utils.toArray('.gold-line').forEach(function (el) {
-    gsap.to(el, {
-      scaleX: 1, duration: 1.4, ease: 'power3.out',
-      scrollTrigger: { trigger: el, start: 'top 90%', once: true }
+    // Stagger: each animated child of a [data-stagger] block gets a delay.
+    document.querySelectorAll('[data-stagger]').forEach(function (group) {
+      group.querySelectorAll('.reveal, .img-reveal').forEach(function (item, i) {
+        item.style.transitionDelay = (i * 0.1) + 's';
+      });
     });
-  });
 
-  // Image reveals (clip-path wipe)
-  gsap.utils.toArray('.img-reveal').forEach(function (el) {
-    gsap.to(el, {
-      clipPath: 'inset(0 0% 0 0)', duration: 1.6, ease: 'power3.inOut',
-      scrollTrigger: { trigger: el, start: 'top 90%', once: true }
+    if (reduceMotion || !('IntersectionObserver' in window)) {
+      // Show everything immediately; no motion.
+      revealEls.forEach(function (el) {
+        el.style.transitionDelay = '0s';
+        el.classList.add('is-visible');
+      });
+      return;
+    }
+
+    const io = new IntersectionObserver(function (entries, obs) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          obs.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0, rootMargin: '0px 0px -10% 0px' });
+
+    revealEls.forEach(function (el) { io.observe(el); });
+  })();
+
+  /* ----------------------------------------------------------------------
+     GALLERY LIGHTBOX — fullscreen viewer, prev/next, keyboard + touch swipe.
+     Navigation is scoped to each .project group (never jumps between projects).
+     ---------------------------------------------------------------------- */
+  (function initLightbox() {
+    const projects = document.querySelectorAll('.project');
+    if (!projects.length) return;
+
+    const groups = [];
+    projects.forEach(function (project) {
+      const imgs = Array.from(project.querySelectorAll('.gallery-item img'));
+      if (!imgs.length) return;
+      const groupIndex = groups.length;
+      groups.push(imgs.map(function (img) {
+        return { src: img.currentSrc || img.src, alt: img.alt || '' };
+      }));
+      imgs.forEach(function (img, i) {
+        img.addEventListener('click', function () { open(groupIndex, i); });
+      });
     });
+    if (!groups.length) return;
+
+    const lb = document.createElement('div');
+    lb.className = 'lightbox';
+    lb.setAttribute('role', 'dialog');
+    lb.setAttribute('aria-modal', 'true');
+    lb.innerHTML =
+      '<button class="lb-close" aria-label="Close">&times;</button>' +
+      '<button class="lb-prev" aria-label="Previous image">&#8249;</button>' +
+      '<img alt="">' +
+      '<button class="lb-next" aria-label="Next image">&#8250;</button>';
+    document.body.appendChild(lb);
+
+    const lbImg = lb.querySelector('img');
+    let g = 0, i = 0;
+
+    function render() {
+      const item = groups[g][i];
+      lbImg.src = item.src;
+      lbImg.alt = item.alt;
+    }
+    function open(gi, ii) {
+      g = gi; i = ii;
+      render();
+      lb.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+    function close() {
+      lb.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+    function prev() { i = (i - 1 + groups[g].length) % groups[g].length; render(); }
+    function next() { i = (i + 1) % groups[g].length; render(); }
+
+    lb.querySelector('.lb-close').addEventListener('click', close);
+    lb.querySelector('.lb-prev').addEventListener('click', prev);
+    lb.querySelector('.lb-next').addEventListener('click', next);
+    lb.addEventListener('click', function (e) { if (e.target === lb) close(); });
+
+    document.addEventListener('keydown', function (e) {
+      if (!lb.classList.contains('open')) return;
+      if (e.key === 'Escape') close();
+      else if (e.key === 'ArrowLeft') prev();
+      else if (e.key === 'ArrowRight') next();
+    });
+
+    // Touch swipe (mobile)
+    let startX = 0, startY = 0, tracking = false;
+    lb.addEventListener('touchstart', function (e) {
+      if (e.touches.length !== 1) return;
+      startX = e.touches[0].clientX;
+      startY = e.touches[0].clientY;
+      tracking = true;
+    }, { passive: true });
+    lb.addEventListener('touchend', function (e) {
+      if (!tracking) return;
+      tracking = false;
+      const dx = e.changedTouches[0].clientX - startX;
+      const dy = e.changedTouches[0].clientY - startY;
+      if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy)) {
+        if (dx > 0) prev(); else next();
+      }
+    }, { passive: true });
+  })();
+
+  /* ----------------------------------------------------------------------
+     DYNAMIC COPYRIGHT YEAR — never goes stale
+     ---------------------------------------------------------------------- */
+  document.querySelectorAll('.footer-year').forEach(function (el) {
+    el.textContent = new Date().getFullYear();
   });
 
   /* ----------------------------------------------------------------------

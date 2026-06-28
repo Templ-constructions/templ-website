@@ -15,21 +15,23 @@
 
   <!-- NAV -->
   <nav class="nav">
-    <a href="index.html" aria-label="Templ Constructions home"><img class="nav-logo" src="assets/logo/Templ_Primary_Logo_White.svg" alt="Templ Constructions"></a>
+    <a href="index.html" aria-label="Templ Constructions home"><img class="nav-logo" src="assets/logo/Templ_Primary_Logo_White.svg" alt="Templ Constructions" width="100" height="45"></a>
     <div class="nav-links">
       <a href="about.html" class="active">About</a>
+      <a href="process.html">Process</a>
       <a href="gallery.html">Gallery</a>
-      <a href="contact.html">Contact</a>
       <a href="reviews.html">Reviews</a>
+      <a href="contact.html">Contact</a>
     </div>
     <button class="nav-toggle" id="navToggle" aria-label="Open menu">&#9776;</button>
   </nav>
   <div class="mobile-nav" id="mobileNav">
     <button class="mobile-close" id="mobileClose" aria-label="Close menu">&times;</button>
     <a href="about.html" class="active">About</a>
+    <a href="process.html">Process</a>
     <a href="gallery.html">Gallery</a>
-    <a href="contact.html">Contact</a>
     <a href="reviews.html">Reviews</a>
+    <a href="contact.html">Contact</a>
   </div>
 
   <!-- Section 1 — Video hero -->
@@ -38,6 +40,7 @@
       <source src="assets/videos/hero-about.mp4" type="video/mp4">
     </video>
     <div class="vid-tint"></div>
+    <div class="about-hero-overlay"><h1>About Templ</h1></div>
   </header>
 
   <!-- Section 2 — Story -->
@@ -116,25 +119,32 @@
   <footer class="footer">
     <div class="footer-cols">
       <div class="footer-left">
-        <img class="footer-logo" src="assets/logo/Templ_Primary_Logo_White.svg" alt="Templ Constructions">
+        <img class="footer-logo" src="assets/logo/Templ_Primary_Logo_White.svg" alt="Templ Constructions" width="60" height="27">
         <p class="footer-tag">Our Project, Your Templ</p>
       </div>
       <div class="footer-nav">
         <a href="about.html">About</a>
+        <a href="process.html">Process</a>
         <a href="gallery.html">Gallery</a>
-        <a href="contact.html">Contact</a>
         <a href="reviews.html">Reviews</a>
+        <a href="contact.html">Contact</a>
       </div>
       <div class="footer-contact">
         <a href="mailto:james@templconstructions.com.au">james@templconstructions.com.au</a><br>
         <a href="tel:0438690815">0438 690 815</a><br>
-        @templconstructions<br>
-        @jamesroney.build<br>
-        Registered Builder — CDB-U 75404
+        <a href="https://www.instagram.com/templconstructions" target="_blank" rel="noopener">@templconstructions</a><br>
+        <a href="https://www.instagram.com/jamesroney.build" target="_blank" rel="noopener">@jamesroney.build</a><br>
+        <span class="builder-reg">
+          <svg class="shield-icon" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M12 2 L20 5 L20 11 C20 16 16.5 20 12 22 C7.5 20 4 16 4 11 L4 5 Z"/>
+            <path d="M8 12 l2.6 2.6 L16 9.2" fill="none" stroke="#0A0A0A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          Registered Builder — CDB-U 75404
+        </span>
       </div>
     </div>
     <div class="footer-bottom">
-      <p>&copy; 2025 Templ Constructions. All rights reserved.</p>
+      <p>&copy; <span class="footer-year">2025</span> Templ Constructions. All rights reserved.</p>
     </div>
   </footer>
 
