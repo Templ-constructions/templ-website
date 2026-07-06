@@ -328,7 +328,22 @@ button { font-family: inherit; cursor: pointer; }
   gap: 40px;
   transform: translateX(100%);
   will-change: transform;
+  overflow: hidden;
 }
+/* The brand, everywhere: a giant faint illuminated Templ mark behind the
+   menu (James, 2026-07-06 — "really subtle"). Decorative, so it lives in
+   CSS; the links sit above it untouched. */
+.mobile-nav::before {
+  content: "";
+  position: absolute;
+  inset: -12%;
+  background: url("../assets/logo/Templ_Primary_Logo_White.svg") center / 130% no-repeat;
+  opacity: 0.05;
+  filter: drop-shadow(0 0 60px rgba(255, 255, 255, 0.55)) drop-shadow(0 0 140px rgba(201, 166, 81, 0.25));
+  pointer-events: none;
+  z-index: 0;
+}
+.mobile-nav > * { position: relative; z-index: 1; }
 .mobile-nav a {
   font-family: var(--serif);
   font-weight: 300;
