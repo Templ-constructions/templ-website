@@ -383,12 +383,14 @@ button { font-family: inherit; cursor: pointer; }
   pointer-events: none;
 }
 .about-hero-overlay h1 {
-  font-family: var(--serif);
-  font-weight: 300;
-  font-style: italic;
-  font-size: 64px;
-  letter-spacing: 0.02em;
+  /* Calligraphy per James (2026-07-06) — elegant, stands off the video. */
+  font-family: 'Great Vibes', var(--serif), cursive;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 84px;
+  letter-spacing: 0.01em;
   color: var(--text);
+  text-shadow: 0 2px 24px rgba(0, 0, 0, 0.55);
   margin: 0;
   text-shadow: 0 2px 30px rgba(0, 0, 0, 0.45);
 }
@@ -398,7 +400,14 @@ button { font-family: inherit; cursor: pointer; }
   margin: 0 auto;
   padding: 120px 40px;
 }
-.story h1 { font-size: 52px; color: var(--text); }
+.story h1 {
+  /* Same voice as the paragraphs below it — just bigger and bolder (James). */
+  font-family: var(--sans);
+  font-weight: 600;
+  font-size: 46px;
+  letter-spacing: 0.01em;
+  color: var(--text);
+}
 .story .gold-line { margin: 28px 0 36px; }
 .story p {
   font-weight: 300;
@@ -928,7 +937,8 @@ button { font-family: inherit; cursor: pointer; }
 
   /* About */
   .story { padding: 80px 24px; }
-  .story h1 { font-size: 34px; }
+  .story h1 { font-size: 30px; }
+  .about-hero-overlay h1 { font-size: 52px; }
   .feature { padding: 64px 24px; }
   .feature h2 { font-size: 30px; }
   .scoda { padding: 80px 24px; }
