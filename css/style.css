@@ -338,7 +338,7 @@ button { font-family: inherit; cursor: pointer; }
   position: absolute;
   inset: 0;
   /* Whole mark visible on phone AND desktop (James: was cropping to 'EMP'). */
-  background: url("../assets/logo/Templ_Primary_Logo_White.svg") center / min(55vw, 360px) no-repeat;
+  background: url("../assets/logo/Templ_Primary_Logo_White.svg") center / min(77vw, 505px) no-repeat;
   opacity: 0.05;
   filter: drop-shadow(0 0 60px rgba(255, 255, 255, 0.55)) drop-shadow(0 0 140px rgba(201, 166, 81, 0.25));
   pointer-events: none;
