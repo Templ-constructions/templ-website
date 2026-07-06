@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Templ Constructions — SCODA Banner</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Montserrat:wght@200;300;400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0A0A0A; --ink:#FFFFFF; --gold:#C9A651;
+    --muted:#B8B8B8; --dim:#7E7E7E; --line:#2A2412;
+    --serif:'Cormorant Garamond',Georgia,serif;
+    --sans:'Montserrat',-apple-system,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html,body{background:#050505;}
+  body{font-family:var(--sans);-webkit-font-smoothing:antialiased;}
+
+  /* ---- on-screen print helper (never prints) ---- */
+  .helper{
+    max-width:1100px;margin:24px auto 0;padding:18px 22px;
+    background:#111;border:1px solid #222;border-radius:8px;
+    color:#cfcfcf;font-size:13px;line-height:1.7;font-weight:300;
+  }
+  .helper b{color:var(--gold);font-weight:400;letter-spacing:.04em;}
+  .helper code{background:#000;color:#e7c97a;padding:2px 6px;border-radius:4px;}
+
+  /* ---- banner stage ---- */
+  .stage{display:flex;justify-content:center;padding:24px;}
+  .banner{
+    position:relative;
+    width:100%;max-width:1500px;
+    aspect-ratio:1.414 / 1;          /* A-series landscape */
+    container-type:size;
+    background:
+      radial-gradient(120% 120% at 50% 0%, #141414 0%, #0A0A0A 55%, #070707 100%);
+    overflow:hidden;
+  }
+
+  /* gold frame */
+  .frame{position:absolute;inset:3cqw;border:1px solid rgba(201,166,81,.45);pointer-events:none;}
+  .frame::before,.frame::after{
+    content:"";position:absolute;width:2.2cqw;height:2.2cqw;border:1px solid var(--gold);
+  }
+  .frame::before{top:-1px;left:-1px;border-right:none;border-bottom:none;}
+  .frame::after{bottom:-1px;right:-1px;border-left:none;border-top:none;}
+
+  .inner{
+    position:absolute;inset:0;
+    padding:7cqw 7.5cqw;
+    display:flex;flex-direction:column;justify-content:space-between;
+  }
+
+  /* header */
+  .head{text-align:center;}
+  .logo{width:15cqw;height:auto;display:block;margin:0 auto;}
+  .tag{
+    margin-top:1.6cqw;font-family:var(--sans);font-weight:200;
+    font-size:1.05cqw;letter-spacing:.42em;color:var(--gold);
+    text-transform:uppercase;text-indent:.42em;
+  }
+  .subtitle{
+    margin-top:2.4cqw;font-family:var(--serif);font-style:italic;font-weight:300;
+    font-size:2.1cqw;color:var(--muted);text-align:center;line-height:1.25;
+  }
+
+  /* values row */
+  .values{
+    display:grid;grid-template-columns:repeat(5,1fr);
+    gap:0;align-items:start;
+  }
+  .val{padding:0 1.6cqw;position:relative;text-align:center;}
+  .val + .val::before{
+    content:"";position:absolute;left:0;top:8%;height:84%;
+    border-left:1px solid var(--line);
+  }
+  .letter{
+    font-family:var(--serif);font-weight:600;font-size:7cqw;line-height:1;
+    color:var(--gold);display:block;
+  }
+  .name{
+    margin-top:1.4cqw;font-family:var(--sans);font-weight:400;
+    font-size:1.02cqw;letter-spacing:.2em;text-transform:uppercase;
+    color:var(--ink);
+  }
+  .desc{
+    margin-top:1.2cqw;font-family:var(--sans);font-weight:300;
+    font-size:.92cqw;line-height:1.65;color:var(--dim);
+  }
+
+  /* footer */
+  .foot{text-align:center;}
+  .rule{width:18cqw;height:1px;background:var(--gold);margin:0 auto 2.4cqw;}
+  .recall{
+    font-family:var(--serif);font-style:italic;font-weight:400;
+    font-size:3cqw;color:var(--ink);line-height:1.1;
+  }
+  .recall .q{color:var(--gold);}
+  .checks{
+    margin-top:1.9cqw;font-family:var(--sans);font-weight:300;
+    font-size:.92cqw;letter-spacing:.04em;color:var(--muted);
+  }
+  .checks i{color:var(--gold);font-style:normal;margin:0 .7cqw;}
+
+  /* ---- print ---- */
+  @page{size:A3 landscape;margin:0;}
+  @media print{
+    html,body{background:#0A0A0A;}
+    .helper{display:none;}
+    .stage{padding:0;}
+    .banner{max-width:none;width:100%;height:100vh;aspect-ratio:auto;}
+    -webkit-print-color-adjust:exact;print-color-adjust:exact;
+  }
+  body{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+</style>
+</head>
+<body>
+
+  <div class="helper">
+    <b>How to print / export this banner:</b><br>
+    1. Press <code>⌘ P</code> (Chrome recommended). &nbsp; 2. Destination: <b>Save as PDF</b>. &nbsp;
+    3. Layout: <b>Landscape</b>. &nbsp; 4. Paper size: <b>A3</b> (or A2/A4 — it scales perfectly). &nbsp;
+    5. Margins: <b>None</b>. &nbsp; 6. <b>⚠️ Turn ON “Background graphics”</b> (under More settings) — this is what keeps the black background &amp; gold.<br>
+    For a giant wall print, send the saved PDF to a print shop and ask for A1 or A0 — it’s vector, so it stays razor-sharp at any size. This box does not appear in the print.
+  </div>
+
+  <div class="stage">
+    <div class="banner">
+      <div class="frame"></div>
+      <div class="inner">
+
+        <header class="head">
+          <!-- Templ primary logo (white), embedded -->
+          <svg class="logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 268.65" aria-label="Templ Constructions">
+            <g fill="#FFFFFF">
+              <path d="M97.59,262a8.78,8.78,0,0,1-2.83,5,7.84,7.84,0,0,1-5.07,1.72,8.1,8.1,0,0,1-7-4.17c-.17-.35-.31-.69-.45-1a7.69,7.69,0,0,1-.31-1.24,63.51,63.51,0,0,1,0-10.8,6.63,6.63,0,0,1,.76-2.21,7.93,7.93,0,0,1,2.62-2.87A8.15,8.15,0,0,1,95,247a8.91,8.91,0,0,1,2.59,4.89H94a5.16,5.16,0,0,0-1.51-2.4,4.35,4.35,0,0,0-2.78-1,4.65,4.65,0,0,0-2.07.49,4.45,4.45,0,0,0-1.43,1.2,4,4,0,0,0-.88,1.93,29.58,29.58,0,0,0-.24,4.68,28.79,28.79,0,0,0,.24,4.64,4,4,0,0,0,.89,2,4.09,4.09,0,0,0,1.42,1.16,3.91,3.91,0,0,0,2.07.53q2.88,0,4.3-3.18Z"/>
+              <path d="M116.07,256.85a41.16,41.16,0,0,1,.23-5.43,6.55,6.55,0,0,1,.76-2.22,7.8,7.8,0,0,1,2.62-2.85,7.51,7.51,0,0,1,4.42-1.3,7.7,7.7,0,0,1,7,4.17,5.37,5.37,0,0,1,.79,2.21,73,73,0,0,1,0,10.8,5.46,5.46,0,0,1-.79,2.25,7.49,7.49,0,0,1-2.56,2.83,7.81,7.81,0,0,1-4.47,1.34,8.1,8.1,0,0,1-7-4.17c-.17-.35-.32-.69-.45-1a6,6,0,0,1-.31-1.24A40.87,40.87,0,0,1,116.07,256.85Zm3.4,0a28.42,28.42,0,0,0,.25,4.64,4,4,0,0,0,.88,2,4.19,4.19,0,0,0,1.42,1.16,3.93,3.93,0,0,0,2.07.53,4.12,4.12,0,0,0,2.12-.53,3.87,3.87,0,0,0,1.36-1.16,4.19,4.19,0,0,0,.91-2,29.18,29.18,0,0,0,.23-4.64,30,30,0,0,0-.23-4.68,4.88,4.88,0,0,0-2.27-3.13,4.94,4.94,0,0,0-2.12-.49A4.72,4.72,0,0,0,122,249a4.41,4.41,0,0,0-1.42,1.2,4,4,0,0,0-.88,1.93A29.2,29.2,0,0,0,119.47,256.85Z"/>
+              <path d="M153,245.24h3.21l10.19,16.51h.06V245.24h3.41v23.22h-3.23L156.5,252h-.06v16.51H153Z"/>
+              <path d="M191.9,262.83a9.69,9.69,0,0,0,6.39,2.32q4.4-.06,4.45-3.24,0-2.6-2.93-3.12l-3-.43a7.27,7.27,0,0,1-4.41-2.22,6.27,6.27,0,0,1-1.56-4.3,6.45,6.45,0,0,1,2-4.91,7.48,7.48,0,0,1,5.38-1.88,12.34,12.34,0,0,1,7.29,2.4l-1.9,2.89a10.07,10.07,0,0,0-5.57-1.79,4.18,4.18,0,0,0-2.63.81,3.1,3.1,0,0,0-1.13,2.52,2.63,2.63,0,0,0,.76,1.82,4.29,4.29,0,0,0,2.42,1.14c.62.11,1.46.23,2.53.37a6.94,6.94,0,0,1,4.68,2.35,6.69,6.69,0,0,1,1.5,4.33q-.18,6.66-7.9,6.76a12.53,12.53,0,0,1-8.58-3.17Z"/>
+              <path d="M230.47,248.36H224.3v-3.12H240v3.12h-6.17v20.1h-3.4Z"/>
+              <path d="M259.23,245.24H268a6.8,6.8,0,0,1,4.59,1.53,6.28,6.28,0,0,1,2.23,4.95,6.44,6.44,0,0,1-4.35,6.43l5.21,10.31h-4.05L267,258.53h-4.36v9.93h-3.41Zm3.41,10.18h5.16a3.58,3.58,0,0,0,3.82-3.71,3.1,3.1,0,0,0-1.13-2.63,3.8,3.8,0,0,0-2.5-.72h-5.35Z"/>
+              <path d="M295,245.24h3.4v15a4.89,4.89,0,0,0,1.33,3.62,4.35,4.35,0,0,0,3.26,1.31,4.44,4.44,0,0,0,3.29-1.31,4.91,4.91,0,0,0,1.3-3.62v-15H311v15.35a8.07,8.07,0,0,1-13.65,5.82A7.64,7.64,0,0,1,295,260.6Z"/>
+              <path d="M347.46,262a8.78,8.78,0,0,1-2.83,5,7.84,7.84,0,0,1-5.07,1.72,8.1,8.1,0,0,1-7.05-4.17c-.17-.35-.31-.69-.45-1a7.69,7.69,0,0,1-.31-1.24,63.51,63.51,0,0,1,0-10.8,6.63,6.63,0,0,1,.76-2.21,7.93,7.93,0,0,1,2.62-2.87,8.15,8.15,0,0,1,9.74.68,8.91,8.91,0,0,1,2.59,4.89h-3.62a5.16,5.16,0,0,0-1.51-2.4,4.35,4.35,0,0,0-2.78-1,4.65,4.65,0,0,0-2.07.49,4.3,4.3,0,0,0-1.42,1.2,3.89,3.89,0,0,0-.89,1.93,29.58,29.58,0,0,0-.24,4.68,28.79,28.79,0,0,0,.24,4.64,4,4,0,0,0,.89,2,4.09,4.09,0,0,0,1.42,1.16,3.91,3.91,0,0,0,2.07.53q2.88,0,4.3-3.18Z"/>
+              <path d="M370.52,248.36h-6.16v-3.12H380.1v3.12h-6.17v20.1h-3.41Z"/>
+              <path d="M399.29,245.24h3.4v23.22h-3.4Z"/>
+              <path d="M423.24,256.85a41.16,41.16,0,0,1,.23-5.43,6.78,6.78,0,0,1,.76-2.22,7.89,7.89,0,0,1,2.62-2.85,7.54,7.54,0,0,1,4.43-1.3,7.69,7.69,0,0,1,4.47,1.3,7.83,7.83,0,0,1,2.56,2.87,5.37,5.37,0,0,1,.78,2.21,73,73,0,0,1,0,10.8,5.46,5.46,0,0,1-.78,2.25,7.58,7.58,0,0,1-2.56,2.83,7.87,7.87,0,0,1-4.48,1.34,8.1,8.1,0,0,1-7-4.17c-.17-.35-.32-.69-.45-1a6.76,6.76,0,0,1-.31-1.24A40.87,40.87,0,0,1,423.24,256.85Zm3.41,0a28.79,28.79,0,0,0,.24,4.64,4,4,0,0,0,.89,2,4.09,4.09,0,0,0,1.42,1.16,3.88,3.88,0,0,0,2.07.53,4.08,4.08,0,0,0,2.11-.53,3.87,3.87,0,0,0,1.36-1.16,4.2,4.2,0,0,0,.92-2,30.48,30.48,0,0,0,.23-4.64,31.31,31.31,0,0,0-.23-4.68,4.94,4.94,0,0,0-2.28-3.13,4.9,4.9,0,0,0-2.11-.49,4.65,4.65,0,0,0-2.07.49,4.3,4.3,0,0,0-1.42,1.2,3.89,3.89,0,0,0-.89,1.93A29.58,29.58,0,0,0,426.65,256.85Z"/>
+              <path d="M460.21,245.24h3.21l10.18,16.51h.06V245.24h3.41v23.22h-3.23L463.67,252h-.06v16.51h-3.4Z"/>
+              <path d="M499.08,262.83a9.69,9.69,0,0,0,6.39,2.32q4.38-.06,4.44-3.24c0-1.73-1-2.77-2.93-3.12l-3-.43a7.27,7.27,0,0,1-4.41-2.22,6.27,6.27,0,0,1-1.56-4.3,6.48,6.48,0,0,1,2-4.91,7.49,7.49,0,0,1,5.38-1.88,12.34,12.34,0,0,1,7.29,2.4l-1.9,2.89a10,10,0,0,0-5.57-1.79,4.18,4.18,0,0,0-2.63.81,3.06,3.06,0,0,0-1.12,2.52,2.62,2.62,0,0,0,.75,1.82,4.29,4.29,0,0,0,2.43,1.14c.61.11,1.46.23,2.53.37a6.91,6.91,0,0,1,4.67,2.35,6.69,6.69,0,0,1,1.5,4.33c-.11,4.44-2.75,6.7-7.89,6.76a12.55,12.55,0,0,1-8.59-3.17Z"/>
+              <path d="M446.08,135.38h-6.51V118.12h6.51c8,0,9.67,4.19,9.67,8.55,0,4.52-1.67,8.71-9.67,8.71m-1.34-39.72h-31V199.57h25.84V157.5h5.17c25.35,0,37-13.24,37-30.83,0-16.26-8.17-31-37-31"/>
+              <rect x="114.18" y="95.33" width="85.98" height="24.22"/>
+              <polygon points="534.3 95.1 534.3 175.35 534.3 198.81 534.3 199.57 600 199.57 600 175.35 558.52 175.35 558.52 95.1 534.3 95.1"/>
+              <polygon points="0 95.1 0 119.32 41.48 119.32 41.48 199.57 65.7 199.57 65.7 119.32 65.7 95.86 65.7 95.1 0 95.1"/>
+              <polygon points="114.18 136.26 114.18 160.48 114.18 175.35 114.18 199.57 138.4 199.57 200.16 199.57 200.16 175.35 138.4 175.35 138.4 160.48 200.16 160.48 200.16 136.26 138.4 136.26 114.18 136.26"/>
+              <polygon points="342.04 95.68 342.02 95.66 307.19 130.49 272.36 95.66 272.35 95.67 272.35 95.66 248.13 95.66 248.13 199.37 272.35 199.37 272.35 172.66 272.35 165.33 272.35 129.9 290.06 147.62 307.19 164.74 324.32 147.61 342.04 129.89 342.04 165.34 342.04 172.65 342.04 199.37 366.26 199.37 366.26 95.66 342.04 95.66 342.04 95.68"/>
+              <path d="M403.16,0C354.35,15,301.77,19,251.08,13.49a343.91,343.91,0,0,1-39.85-6.63c.24,0-.12,10.83-.12,11.75s-.5,11.61.12,11.75C260,41.55,311.81,42.06,361.08,33.53a341,341,0,0,0,42.08-10c.64-.19.12-10.72.12-11.75S402.67.15,403.16,0"/>
+              <path d="M264,53.48q-16.68-.09-33.37-.1c-.17,0-.18,23.5,0,23.5,39.67,0,79.35.49,119,.71q17.08.09,34.15.1c.17,0,.18-23.5,0-23.5-39.93,0-79.86-.49-119.8-.71"/>
+            </g>
+          </svg>
+          <div class="tag">Our Project, Your Templ</div>
+          <p class="subtitle">Our values are not wall art.<br>They are daily standards.</p>
+        </header>
+
+        <section class="values">
+          <div class="val">
+            <span class="letter">S</span>
+            <div class="name">Self-Awareness</div>
+            <p class="desc">Embrace what you feel and why you feel it. Growth starts with awareness, not avoidance.</p>
+          </div>
+          <div class="val">
+            <span class="letter">C</span>
+            <div class="name">Challenge</div>
+            <p class="desc">Stay curious, not defensive. Growth comes from questioning what you know.</p>
+          </div>
+          <div class="val">
+            <span class="letter">O</span>
+            <div class="name">Optimism</div>
+            <p class="desc">Choose to find the good — even in challenge — and refuse to fall into a pessimistic mindset.</p>
+          </div>
+          <div class="val">
+            <span class="letter">D</span>
+            <div class="name">Dedication</div>
+            <p class="desc">Committed to sharpening your skills and evolving your mindset — always striving to do better than yesterday.</p>
+          </div>
+          <div class="val">
+            <span class="letter">A</span>
+            <div class="name">Accountability</div>
+            <p class="desc">Hold yourself and your team to the highest standard — own your actions and deliver the quality you'd expect in return.</p>
+          </div>
+        </section>
+
+        <footer class="foot">
+          <div class="rule"></div>
+          <p class="recall"><span class="q">“</span>SCODA before you swing a hammer.<span class="q">”</span></p>
+          <p class="checks">
+            Am I self-aware?<i>·</i>Am I challenging my thinking?<i>·</i>Am I staying optimistic?<i>·</i>Am I dedicated to doing this properly?<i>·</i>Am I accountable for the outcome?
+          </p>
+        </footer>
+
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
