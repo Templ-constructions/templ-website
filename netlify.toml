@@ -15,3 +15,16 @@
   for = "/*.html"
   [headers.values]
     Cache-Control = "public, max-age=0, must-revalidate"
+
+# Cheltenham Golf Club sign and clubhouse screen.
+# 302 so the target can be changed later without browsers caching it.
+[[redirects]]
+  from = "/cheltenham"
+  to = "https://calendly.com/james-templconstructions/30min?utm_source=cheltenham-golf&utm_medium=sign&utm_campaign=course-sign&a2=Cheltenham%20Golf%20Club%20sign"
+  status = 302
+  force = true
+
+[[redirects]]
+  from = "/golf"
+  to = "/cheltenham"
+  status = 302
